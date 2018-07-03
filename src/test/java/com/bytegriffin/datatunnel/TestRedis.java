@@ -187,7 +187,7 @@ public class TestRedis {
      *
      * @return
      */
-    private static void query() {
+    static void query() {
         JedisCommands jedis = getConnection();
         String str = jedis.hget(tablename, columnname);
         System.out.println(str);
@@ -196,7 +196,7 @@ public class TestRedis {
     /**
      * 插入数据
      */
-    private static void insertData() {
+    static void insertData() {
         JedisCommands jedis = getConnection();
         jedis.hset(tablename, columnname, "test value");
     }

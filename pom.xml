@@ -26,19 +26,17 @@
 	<properties>
 		<log4j.version>2.11.0</log4j.version>
 		<slf4j.version>1.7.25</slf4j.version>
-		<dom4j.version>2.1.0</dom4j.version>
-		<!-- 注意：以下是java8的，和java6、java7不一样 -->
-		<hikaricp.version>3.0.0</hikaricp.version>
-		<mysql.version>6.0.6</mysql.version>
-		<guava.version>23.0</guava.version>
-		<hbase.version>1.4.3</hbase.version>
-		<jsqlparser.version>1.1</jsqlparser.version>
-		<mongodb.version>3.6.3</mongodb.version>
+		<dom4j.version>2.1.1</dom4j.version>
+		<hikaricp.version>3.2.0</hikaricp.version>
+		<mysql.version>8.0.11</mysql.version>
+		<guava.version>25.1-jre</guava.version>
+		<hbase.version>2.0.1</hbase.version>
+		<jsqlparser.version>1.2</jsqlparser.version>
+		<mongodb.version>3.8.0</mongodb.version>
 		<kafka.version>1.1.0</kafka.version>
 		<jedis.version>2.9.0</jedis.version>
-		<!-- 注意：lucene版本需要java8 -->
-		<lucene.version>7.3.0</lucene.version>
-		<rabbitmq.version>5.2.0</rabbitmq.version>
+		<lucene.version>7.4.0</lucene.version>
+		<rabbitmq.version>5.3.0</rabbitmq.version>
 		<protostuff.version>1.6.0</protostuff.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>

@@ -2,13 +2,13 @@ package com.bytegriffin.datatunnel;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
-import org.apache.hadoop.hbase.HColumnDescriptor;
-import org.apache.hadoop.hbase.HTableDescriptor;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
+import org.apache.hbase.thirdparty.com.google.common.collect.Lists;
 
 import java.io.IOException;
+import java.util.List;
 
 public class TestHBase {
 
@@ -48,10 +48,13 @@ public class TestHBase {
                 admin.deleteTable(tableName);
                 System.out.println("表已经存在，先删除");
             }
-            HTableDescriptor hTableDescriptor = new HTableDescriptor(tableName);
-            HColumnDescriptor family = new HColumnDescriptor(colomnfamily);
-            hTableDescriptor.addFamily(family);
-            admin.createTable(hTableDescriptor);
+            TableDescriptorBuilder builder = TableDescriptorBuilder.newBuilder(tableName);
+			List<ColumnFamilyDescriptor> cfList = Lists.newArrayList();
+			cfList.add(ColumnFamilyDescriptorBuilder.newBuilder(Bytes.toBytes(colomnfamily)).build());
+			builder.setColumnFamilies(cfList).setReadOnly(false);
+			TableDescriptor desc = builder.setDurability(Durability.ASYNC_WAL).build();
+			admin.createTable(desc);
+			
             System.out.println("表创建成功");
         } catch (IOException e) {
             e.printStackTrace();

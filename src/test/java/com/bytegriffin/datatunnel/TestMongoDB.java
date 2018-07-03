@@ -43,7 +43,7 @@ public class TestMongoDB {
     /**
      * 创建表
      */
-    private static void createTable() {
+    static void createTable() {
         MongoDatabase database = getConn();
         database.createCollection(tablename);
         System.out.println("创建表成功");
@@ -52,7 +52,7 @@ public class TestMongoDB {
     /**
      * 插入数据
      */
-    private static void insertData() {
+    static void insertData() {
         MongoDatabase database = getConn();
         MongoCollection<Document> collection = database.getCollection(tablename);
         Document doc = new Document();
@@ -63,7 +63,7 @@ public class TestMongoDB {
     /**
      * 查询数据
      */
-    private static void query() {
+    static void query() {
         MongoDatabase database = getConn();
         MongoCollection<Document> collection = database.getCollection(tablename);
 

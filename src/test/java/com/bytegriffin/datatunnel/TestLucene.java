@@ -2,7 +2,6 @@ package com.bytegriffin.datatunnel;
 
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.HashMap;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.cn.smart.SmartChineseAnalyzer;
@@ -22,8 +21,6 @@ import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.FSDirectory;
 
-import com.google.common.collect.Maps;
-
 public class TestLucene {
 
 	private static final Analyzer analyzer = new SmartChineseAnalyzer(); // 中文分词
@@ -37,20 +34,11 @@ public class TestLucene {
 		}
 		return null;
 	}
-	
-	private static void read() {
-		try {
-			IndexReader reader = DirectoryReader.open(getFSDirectory());
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 
 	/**
 	 * 插入数据
 	 */
-	private static void insertData() {
+   static void insertData() {
 		IndexWriterConfig config = new IndexWriterConfig(analyzer);
         config.setOpenMode(OpenMode.CREATE);
         LogDocMergePolicy policy = new LogDocMergePolicy();
@@ -75,7 +63,7 @@ public class TestLucene {
 	/**
 	 * 更新数据
 	 */
-	private static void updateData() {
+	static void updateData() {
 		IndexWriterConfig config = new IndexWriterConfig(analyzer);
         config.setOpenMode(OpenMode.CREATE_OR_APPEND);
         LogDocMergePolicy policy = new LogDocMergePolicy();
@@ -99,7 +87,7 @@ public class TestLucene {
 	/**
 	 * 删除数据
 	 */
-	private static void deleteData() {
+    static void deleteData() {
 		IndexWriterConfig config = new IndexWriterConfig(analyzer);
         config.setOpenMode(OpenMode.CREATE_OR_APPEND);
         LogDocMergePolicy policy = new LogDocMergePolicy();
@@ -123,7 +111,7 @@ public class TestLucene {
 	/**
 	 * 查询数据
 	 */
-	private static void select() {
+	static void select() {
         try (IndexReader indexReader = DirectoryReader.open(getFSDirectory())){
 			IndexSearcher indexSearcher = new IndexSearcher(indexReader);
 		    TermQuery query = new TermQuery(new Term("LastName","ffff"));
