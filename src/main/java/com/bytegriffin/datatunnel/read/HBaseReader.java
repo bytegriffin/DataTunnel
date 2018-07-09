@@ -13,13 +13,14 @@ import com.bytegriffin.datatunnel.sql.SqlParser;
 import com.google.common.base.Splitter;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
+
+import org.apache.hadoop.hbase.CompareOperator;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.client.ResultScanner;
 import org.apache.hadoop.hbase.client.Scan;
 import org.apache.hadoop.hbase.client.Table;
 import org.apache.hadoop.hbase.filter.*;
-import org.apache.hadoop.hbase.filter.CompareFilter.CompareOp;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -118,10 +119,10 @@ public class HBaseReader implements Readable {
         String left = conlist.get(0).toLowerCase().trim();
         String right = SqlParser.removeSqlQuotes(conlist.get(1).trim());
         if (!left.contains(HBaseContext.column_familiy_split) && left.contains(HBaseContext.row_key)) {//主键row查询filter
-            listFilters.add(new RowFilter(CompareFilter.CompareOp.EQUAL, new BinaryComparator(right.getBytes())));//直接根据主键查询
+            listFilters.add(new RowFilter(CompareOperator.EQUAL, new BinaryComparator(right.getBytes())));//直接根据主键查询
         } else {//字段查询filter
             List<String> allleft = Splitter.on(HBaseContext.column_familiy_split).trimResults().omitEmptyStrings().splitToList(left);
-            listFilters.add(new SingleColumnValueFilter(Bytes.toBytes(allleft.get(0)), Bytes.toBytes(allleft.get(1)), CompareOp.EQUAL, Bytes.toBytes(right)));
+            listFilters.add(new SingleColumnValueFilter(Bytes.toBytes(allleft.get(0)), Bytes.toBytes(allleft.get(1)), CompareOperator.EQUAL, Bytes.toBytes(right)));
         }
     }
 
