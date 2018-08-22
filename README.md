@@ -11,3 +11,6 @@
 
 # 安装
 请查看INSTALL.txt文件
+
+# License
+[Apache 2.0 License.](/LICENSE)
