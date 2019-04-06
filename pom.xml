@@ -36,7 +36,7 @@
 		<kafka.version>1.1.0</kafka.version>
 		<jedis.version>2.9.0</jedis.version>
 		<lucene.version>7.4.0</lucene.version>
-		<rabbitmq.version>5.3.0</rabbitmq.version>
+		<rabbitmq.version>5.4.3</rabbitmq.version>
 		<protostuff.version>1.6.0</protostuff.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
